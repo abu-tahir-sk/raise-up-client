@@ -1,43 +1,21 @@
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import { Outlet } from "react-router-dom";
 
-
-function App() {
-  
-
+const App = () => {
   return (
-    <>
-      
-<div role="tablist" className="tabs tabs-lift tabs-xs">
-  <a role="tab" className="tab">Xsmall</a>
-  <a role="tab" className="tab tab-active">Xsmall</a>
-  <a role="tab" className="tab">Xsmall</a>
-</div>
+    <div>
+      <header>
+        <Navbar />
+      </header>
+      <main className="min-h-[calc(100vh-283px)]">
+        <Outlet/>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  );
+};
 
-<div role="tablist" className="tabs tabs-lift tabs-sm">
-  <a role="tab" className="tab">Small</a>
-  <a role="tab" className="tab tab-active">Small</a>
-  <a role="tab" className="tab">Small</a>
-</div>
-
-<div role="tablist" className="tabs tabs-lift">
-  <a role="tab" className="tab">Medium</a>
-  <a role="tab" className="tab tab-active">Medium</a>
-  <a role="tab" className="tab">Medium</a>
-</div>
-
-<div role="tablist" className="tabs tabs-lift tabs-lg">
-  <a role="tab" className="tab">Large</a>
-  <a role="tab" className="tab tab-active">Large</a>
-  <a role="tab" className="tab">Large</a>
-</div>
-
-<div role="tablist" className="tabs tabs-lift tabs-xl">
-  <a role="tab" className="tab">Xlarge</a>
-  <a role="tab" className="tab tab-active">Xlarge</a>
-  <a role="tab" className="tab">Xlarge</a>
-</div>
-        
-    </>
-  )
-}
-
-export default App
+export default App;
