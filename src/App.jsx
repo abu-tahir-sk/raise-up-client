@@ -1,33 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
+<div role="tablist" className="tabs tabs-lift tabs-xs">
+  <a role="tab" className="tab">Xsmall</a>
+  <a role="tab" className="tab tab-active">Xsmall</a>
+  <a role="tab" className="tab">Xsmall</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift tabs-sm">
+  <a role="tab" className="tab">Small</a>
+  <a role="tab" className="tab tab-active">Small</a>
+  <a role="tab" className="tab">Small</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift">
+  <a role="tab" className="tab">Medium</a>
+  <a role="tab" className="tab tab-active">Medium</a>
+  <a role="tab" className="tab">Medium</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift tabs-lg">
+  <a role="tab" className="tab">Large</a>
+  <a role="tab" className="tab tab-active">Large</a>
+  <a role="tab" className="tab">Large</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift tabs-xl">
+  <a role="tab" className="tab">Xlarge</a>
+  <a role="tab" className="tab tab-active">Xlarge</a>
+  <a role="tab" className="tab">Xlarge</a>
+</div>
+        
     </>
   )
 }
