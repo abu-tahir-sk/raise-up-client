@@ -12,8 +12,10 @@ const Navbar = () => {
                   
                   <li><NavLink to="/allCampaign">All Campaign</NavLink></li>
                   <li><NavLink to="/addNewCampaign">Add New Campaign</NavLink></li>
-                  <li><NavLink to="myCampaign">My  Campaign</NavLink></li>
-                  <li><NavLink to="myDonations">My Donations</NavLink></li>
+                  <li><NavLink to="/myCampaign">My  Campaign</NavLink></li>
+                  <li><NavLink to="/signIn">Sign In</NavLink></li>
+                 
+                  <li><NavLink to="/signUp">Sign Up</NavLink></li>
                  
                   
             </ul>
