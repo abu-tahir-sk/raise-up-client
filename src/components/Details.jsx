@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const Details = () => {
   const data = useLoaderData();
   const { thumbnail, title, campaignType, description, count, date, _id } =
     data;
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
-    setLoading(true); 
+    setLoading(true);
     try {
-     
       await new Promise((resolve) => setTimeout(resolve, 2000));
       alert("Action Completed!");
     } finally {
@@ -35,11 +34,13 @@ const Details = () => {
             <div className="badge badge-outline">{date}</div>
           </div>
 
-          <Link to={`/donate`}>
-            <button onClick={handleClick}
-      disabled={loading} 
-      className={`btn ${loading ? "btn-disabled" : "btn-primary"}`}>Donate</button>
-          </Link>
+          <button
+            onClick={handleClick}
+            disabled={loading}
+            className={`btn ${loading ? "btn-disabled" : "btn-primary"}`}
+          >
+            Donate
+          </button>
         </div>
       </div>
     </div>

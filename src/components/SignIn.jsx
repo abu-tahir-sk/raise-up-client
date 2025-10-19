@@ -53,6 +53,7 @@ const SignIn = () => {
         console.log(result);
         const user = result.user;
         setUser(user)
+        console.log(result.user.photoURL)
         toast.success("✅ Login successfully");
         navigation("/");
 

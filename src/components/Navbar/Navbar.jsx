@@ -30,15 +30,19 @@ const Navbar = () => {
             <NavLink to="/allCampaign">All Campaign</NavLink>
           </li>
           {
-            user && <> <li>
+            user?.userEmail && <> <li>
             <NavLink to="/addNewCampaign">Add New Campaign</NavLink>
           </li>
           </>
 
           }
-          <li>
+          {
+            user && <>
+            <li>
             <NavLink to="/myCampaign">My Campaign</NavLink>
           </li>
+            </>
+          }
         </ul>
         {user ? (
           <div>
@@ -89,10 +93,12 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img
-                    alt={user && user?.displayName}
-                    src={user && user?.photoURL}
-                  />
+                   {user?.photoURL ? (
+      <img src={user.photoURL} alt={user.displayName || "User"} />
+    ) : (
+      <span>{user?.displayName?.[0]?.toUpperCase() || "U"}</span>
+    )}
+                 
                 </div>
               </div>
               <ul

@@ -9,6 +9,7 @@ import Forgot from "../components/Forgot";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Profile from "../components/Profile";
 import Details from "../components/Details";
+import MyCampaign from "../components/MyCampaign";
 
 const router = createBrowserRouter([
   {
@@ -27,8 +28,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/addNewCampaign",
-        element: <PrivateRoute><AddCampaign /></PrivateRoute>,
-      },                
+        element: (
+          <PrivateRoute>
+            <AddCampaign />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/signIn",
         element: <SignIn />,
@@ -46,9 +51,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: "/myCampaign",
+        element: <MyCampaign />,
+        loader: () => fetch("http://localhost:5000/campaign"),
+      },
+      {
         path: "/details/:id",
         element: <Details />,
-        loader:(({params})=>fetch(`http://localhost:5000/campaign/${params.id}`))
+        loader: () => fetch("http://localhost:5000/campaign"),
       },
     ],
   },
