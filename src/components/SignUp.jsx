@@ -9,8 +9,9 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigation = useNavigate()
-  const { createUser,emailVerification } = useContext(AuthContext);
+  const navigation = useNavigate();
+  const { createUser, emailVerification, setUser, profileUpdate } =
+    useContext(AuthContext);
   const handleSignUp = (e) => {
     e.preventDefault();
     setError("");
@@ -20,6 +21,11 @@ const SignUp = () => {
     const email = form.email.value;
     const photoURL = form.photoURL.value;
     const password = form.password.value;
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+
     if (password.length < 6) {
       setErrorMessage("Password must contain at least 6 characters ");
       return;
@@ -34,13 +40,14 @@ const SignUp = () => {
     }
 
     createUser(email, password)
-      .then((res) => {
+      .then(() => {
+        profileUpdate(profile) 
         toast.success("Sign in success");
-        form.reset()
-        navigation('/')
+        form.reset();
+        navigation("/");
         emailVerification()
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err))
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
       })
       .catch((err) => {
         console.log(err);
@@ -111,7 +118,9 @@ const SignUp = () => {
           </p>
         )}
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <p>Already have an account ? please <Link to="/signIn">Sign In</Link></p>
+        <p>
+          Already have an account ? please <Link to="/signIn">Sign In</Link>
+        </p>
       </div>
     </div>
   );

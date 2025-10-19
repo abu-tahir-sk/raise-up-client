@@ -1,6 +1,12 @@
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
+import { toast } from "react-toastify";
+import { AuthContext } from "../Provider/AuthProvider";
 const AddCampaign = () => {
+  const {user} = useContext(AuthContext);
+
+  const [error, setError] = useState("");
   const handleAddCampaign = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -13,31 +19,55 @@ const AddCampaign = () => {
     const userEmail = form.userEmail.value;
     const userName = form.userName.value;
     const info = {
-                 
+      thumbnail,
+      title,
+      campaignType,
+      description,
+      count,
+      date,
+      userEmail,
+      userName,
     };
     console.log(info);
+    if (
+      !thumbnail ||
+      !title || !description
+    ) {
+      setError(toast.error("fill up all field"));
+      return;
+    }
+     const today = new Date().toISOString().split("T")[0];
+    if (date < today) {
+      setError(toast.error(''));
+      return;
+    }
+    setError("");
 
     fetch("http://localhost:5000/campaign", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(info)
-
+      body: JSON.stringify(info),
     })
       .then((res) => res.json())
-      .then((data) =>{ console.log(data)
-        if(data.insertedId){
-  Swal.fire({
-  title: "Campaign successfully",
-  icon: "success",
-  draggable: true
-});
-}
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Campaign successfully",
+            icon: "success",
+            draggable: true,
+          });
+          form.reset()
+        }
       });
   };
   return (
     <div>
+      {
+        error && <p>{error}</p>
+      }
       <div className="w-8/12 mx-auto">
         <form onSubmit={handleAddCampaign} className="fieldset">
           <div className="flex justify-center items-center gap-6">
@@ -105,12 +135,24 @@ const AddCampaign = () => {
           <div className="flex justify-center items-center gap-6">
             <div className="flex flex-col w-full">
               <label className="label py-2">User Email</label>
-              <input type="email" name="userEmail" className="input w-full" />
+              <input
+                type="email"
+                name="userEmail"
+                className="input w-full"
+                defaultValue={user && user.email}
+                readOnly
+              />
             </div>
             <div className="flex flex-col w-full">
               <label className="label py-2">User Name</label>
 
-              <input type="text" name="userName" className="input w-full " />
+              <input
+                type="text"
+                name="userName"
+                className="input w-full"
+                defaultValue={user && user.displayName}
+                readOnly
+              />
             </div>
           </div>
 

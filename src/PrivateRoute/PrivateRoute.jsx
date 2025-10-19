@@ -7,12 +7,13 @@ const PrivateRoute = ({ children }) => {
 
   if(loading){
      return <h2>loading....</h2> 
+     
   }
 
-  if (!user) {
-    return <Navigate to="/signIn"></Navigate>;
+  if (user && user?.email) {
+    return children;
   }
-  return children;
+  return <Navigate to="/signIn"></Navigate>;
 };
 
 export default PrivateRoute;

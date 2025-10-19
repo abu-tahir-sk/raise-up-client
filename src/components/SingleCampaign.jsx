@@ -1,4 +1,6 @@
-const SingleCampaign = ({ setCampaign, singleCampaign, campaign }) => {
+import { Link } from "react-router-dom";
+
+const SingleCampaign = ({  singleCampaign }) => {
   const {
     thumbnail,
     title,
@@ -6,6 +8,7 @@ const SingleCampaign = ({ setCampaign, singleCampaign, campaign }) => {
     description,
     count,
     date,
+    _id
   } = singleCampaign;
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
@@ -27,7 +30,7 @@ const SingleCampaign = ({ setCampaign, singleCampaign, campaign }) => {
           <div className="badge badge-outline">{count}</div>
           <div className="badge badge-outline">{date}</div>
         </div>
-        <button> See More </button>
+       <Link to={`/details/${_id}`}> <button> See More </button></Link>
       </div>
     </div>
   );
