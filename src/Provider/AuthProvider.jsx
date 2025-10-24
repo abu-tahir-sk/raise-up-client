@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile,
+  updateProfile,           
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
@@ -32,20 +32,20 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-  const emailVerification =()=>{
-    return sendEmailVerification(auth.currentUser)
-  }
+  const emailVerification = () => {
+    return sendEmailVerification(auth.currentUser);
+  };
   const signOutUser = () => {
     setLoading(true);
     return signOut(auth);
   };
-  const forgotPassword = (email)=>{
+  const forgotPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
-  }
-   
-  const profileUpdate =(profile)=>{
-   return updateProfile(auth.currentUser,profile)
-  }
+  };
+
+  const profileUpdate = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
 
   const infoAuth = {
     user,
@@ -58,18 +58,18 @@ const AuthProvider = ({ children }) => {
     handleGoogleLogin,
     emailVerification,
     forgotPassword,
-    profileUpdate
+    profileUpdate,
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      
-        setUser(currentUser)
+      setUser(currentUser);
+      setLoading(false);
+    })
 
-      setLoading(false)
       return () => {
         unsubscribe();
       };
-    });
+
   }, []);
 
   return (

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
+    "express-jwt": "^8.5.1",
     "firebase": "^12.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^8.1.0",

@@ -1,20 +1,29 @@
-import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Details = () => {
   const data = useLoaderData();
   const { thumbnail, title, campaignType, description, count, date, _id } =
     data;
-  const [loading, setLoading] = useState(false);
+  console.log(data);
 
-  const handleClick = async () => {
-    setLoading(true);
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      alert("Action Completed!");
-    } finally {
-      setLoading(false);
-    }
+  const handleClick = () => {
+    fetch(`http://localhost:5000/donate/${_id}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          title: "Donation successful!",
+          icon: "success",
+          draggable: true,
+        });
+      });
   };
 
   return (
@@ -34,11 +43,7 @@ const Details = () => {
             <div className="badge badge-outline">{date}</div>
           </div>
 
-          <button
-            onClick={handleClick}
-            disabled={loading}
-            className={`btn ${loading ? "btn-disabled" : "btn-primary"}`}
-          >
+          <button onClick={handleClick} className="btn btn-primary">
             Donate
           </button>
         </div>

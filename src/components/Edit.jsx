@@ -1,75 +1,66 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-
-import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
-const AddCampaign = () => {
-  const {user} = useContext(AuthContext);
 
-  const [error, setError] = useState("");
-  const handleAddCampaign = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const thumbnail = form.thumbnail.value;
-    const title = form.title.value;
-    const campaignType = form.campaignType.value;
-    const description = form.description.value;
-    const count = form.count.value;
-    const date = form.date.value;
-    const userEmail = form.userEmail.value;
-    const userName = form.userName.value;
-    const info = {
-      thumbnail,
-      title,
-      campaignType,
-      description,
-      count,
-      date,
-      userEmail,
-      userName,
-    };
-    console.log(info);
-    if (
-      !thumbnail ||
-      !title || !description
-    ) {
-      setError(toast.error("fill up all field"));
-      return;
-    }
-    //  const today = new Date().toISOString().split("T")[0];
-    // if (date < today) {
-    //   setError(toast.error('pleas input field up'));
-    //   return;
-    // }
-    setError("");
+const Edit = () => {
 
-    fetch("http://localhost:5000/campaign", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Campaign successfully",
-            icon: "success",
-            draggable: true,
+  const campaign = useLoaderData();
+  const { thumbnail, title, campaignType, description, count, date, _id } =
+    campaign;
+    const {user} = useContext(AuthContext);
+    
+      const handleUpdateCampaign = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const thumbnail = form.thumbnail.value;
+        const title = form.title.value;
+        const campaignType = form.campaignType.value;
+        const description = form.description.value;
+        const count = form.count.value;
+        const date = form.date.value;
+        const userEmail = form.userEmail.value;
+        const userName = form.userName.value;
+        const info = {
+          thumbnail,
+          title,
+          campaignType,
+          description,
+          count,
+          date,
+          userEmail,
+          userName,
+        };
+        console.log(info);
+       
+       
+    
+        fetch(`http://localhost:5000/campaign/${_id}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(info),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Update Campaign successfully",
+                icon: "success",
+                draggable: true,
+              });
+              form.reset()
+            }
           });
-          form.reset()
-        }
-      });
-  };
+      };
   return (
     <div>
-      {
-        error && <p>{error}</p>
-      }
+
+      <h3 className="text-center font-bold text-3xl py-4">Update Campaign {title}</h3>
       <div className="w-8/12 mx-auto">
-        <form onSubmit={handleAddCampaign} className="fieldset">
+        <form onSubmit={handleUpdateCampaign} className="fieldset">
           <div className="flex justify-center items-center gap-6">
             <div className="flex flex-col w-full">
               <label className="label py-2">Thumbnail</label>
@@ -77,6 +68,7 @@ const AddCampaign = () => {
                 type="url"
                 name="thumbnail"
                 className="input w-full"
+                defaultValue={thumbnail}
                 placeholder="photoURL"
               />
             </div>
@@ -86,6 +78,7 @@ const AddCampaign = () => {
                 type="text"
                 name="title"
                 className="input w-full "
+                defaultValue={title}
                 placeholder="Campaign title"
               />
             </div>
@@ -95,7 +88,7 @@ const AddCampaign = () => {
               <label className="label py-2">Campaign type </label>
               <select
                 name="campaignType"
-                defaultValue="Medium"
+                defaultValue={campaignType}
                 className="select input w-full"
               >
                 <option>personal issue</option>
@@ -110,6 +103,7 @@ const AddCampaign = () => {
                 type="text"
                 name="description"
                 className="input w-full "
+                defaultValue={description}
                 placeholder="Enter description"
               />
             </div>
@@ -123,13 +117,13 @@ const AddCampaign = () => {
                 name="count"
                 min="1"
                 className="input w-full"
-                defaultValue={1}
+                defaultValue={count}
               ></input>
             </div>
             <div className="flex flex-col w-full">
               <label className="label py-2">Deadline</label>
 
-              <input type="date" name="date" className="input w-full" />
+              <input type="date" defaultValue={date} name="date" className="input w-full" />
             </div>
           </div>
           <div className="flex justify-center items-center gap-6">
@@ -156,11 +150,11 @@ const AddCampaign = () => {
             </div>
           </div>
 
-          <button className="btn btn-neutral mt-4">Add New Campaign</button>
+          <button className="btn btn-neutral mt-4">Update Campaign</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddCampaign;
+export default Edit;

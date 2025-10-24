@@ -5,17 +5,15 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCEe6UnL-DKYnrnvDSFrgAawVTMy5t6B_4",
-  authDomain: "voucher-bazar-3773b.firebaseapp.com",
-  projectId: "voucher-bazar-3773b",
-  storageBucket: "voucher-bazar-3773b.firebasestorage.app",
-  messagingSenderId: "120915701669",
-  appId: "1:120915701669:web:a7a50c11d104a4bcba024c",
-  measurementId: "G-5SM6S8LG6J"
+  apiKey: "AIzaSyAEcUj1qRyyz-9aVGxydNjQNmY1b5vyFY4",
+  authDomain: "rais-up.firebaseapp.com",
+  projectId: "rais-up",
+  storageBucket: "rais-up.firebasestorage.app",
+  messagingSenderId: "276854078523",
+  appId: "1:276854078523:web:d503c8656c2550e02f701e"
 };
-         
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

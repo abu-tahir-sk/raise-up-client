@@ -9,7 +9,7 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigation = useNavigate();
-  const { signInUsers, loading, setLoading, handleGoogleLogin,setUser,  profileUpdate } =
+  const { signInUsers, loading, setLoading, handleGoogleLogin,setUser } =
     useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
@@ -35,7 +35,7 @@ const SignIn = () => {
         // if(!res.user.emailVerified){
         //       setError('Please verify your email address')
         // }
-        toast.success("✅ Login successfully");
+        toast.success("Login successfully");
         navigation("/");
         form.reset("");
         setSuccess(true);
@@ -54,7 +54,7 @@ const SignIn = () => {
         const user = result.user;
         setUser(user)
         console.log(result.user.photoURL)
-        toast.success("✅ Login successfully");
+        toast.success("Login successfully");
         navigation("/");
 
         setSuccess(true);

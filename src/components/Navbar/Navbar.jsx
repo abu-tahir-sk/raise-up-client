@@ -1,9 +1,15 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { ThemeContext } from "../../Provider/ThemeProvider";
+
 
 const Navbar = () => {
+
   const { signOutUser, user } = useContext(AuthContext);
+  const { theme, setTheme } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   const handleLogOut = () => {
     signOutUser()
@@ -15,6 +21,12 @@ const Navbar = () => {
         console.log(err);
       });
   };
+
+  const toggleTheme =()=>{
+    
+    setTheme(theme === "light" ? "dark" : "light");
+  
+  }
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
@@ -23,26 +35,43 @@ const Navbar = () => {
       <div className="flex">
         <ul className="flex justify-center items-center gap-6 px-3">
           <li>
+            <button
+              onClick={toggleTheme}
+              className="text-2xl p-2 rounded-full bg-gray-200 dark:bg-gray-700 
+                   text-yellow-500 dark:text-blue-400 transition duration-300"
+            >
+              {theme === "light" ? <FaSun /> : <FaMoon />}
+            </button>
+          </li>
+          <li>
             <NavLink to="/">Home</NavLink>
           </li>
 
           <li>
             <NavLink to="/allCampaign">All Campaign</NavLink>
           </li>
-          {
-            user?.userEmail && <> <li>
-            <NavLink to="/addNewCampaign">Add New Campaign</NavLink>
-          </li>
-          </>
-
-          }
-          {
-            user && <>
-            <li>
-            <NavLink to="/myCampaign">My Campaign</NavLink>
-          </li>
+          {user && user?.email && (
+            <>
+              {" "}
+              <li>
+                <NavLink to="/addNewCampaign">Add New Campaign</NavLink>
+              </li>
             </>
-          }
+          )}
+          {user && (
+            <>
+              <li>
+                <NavLink to="/myCampaign">My Campaign</NavLink>
+              </li>
+            </>
+          )}
+          {user && (
+            <>
+              <li>
+                <NavLink to="/myDonations">My Donations</NavLink>
+              </li>
+            </>
+          )}
         </ul>
         {user ? (
           <div>
@@ -93,12 +122,11 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                   {user?.photoURL ? (
-      <img src={user.photoURL} alt={user.displayName || "User"} />
-    ) : (
-      <span>{user?.displayName?.[0]?.toUpperCase() || "U"}</span>
-    )}
-                 
+                  {user?.photoURL ? (
+                    <img src={user.photoURL} alt={user.displayName || "User"} />
+                  ) : (
+                    <span>{user?.displayName?.[0]?.toUpperCase() || "U"}</span>
+                  )}
                 </div>
               </div>
               <ul

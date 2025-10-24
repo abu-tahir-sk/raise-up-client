@@ -10,6 +10,10 @@ const SingleCampaign = ({  singleCampaign }) => {
     date,
     _id
   } = singleCampaign;
+
+
+  
+
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>
