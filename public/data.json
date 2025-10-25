@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Support Clean Water Project",
+    "description": "Help us provide clean and safe drinking water to remote villages around the world.",
+    "image": "https://i.ibb.co/ymb0bct0/1000-F-288341279-BPj-GRPfw-EBk-YEYn-WFa4-LKc-Vs-Qc7ft-D4v.jpg",
+    "btn": "Donate Now"
+  },
+  {
+    "id": 2,
+    "title": "Empower Women Entrepreneurs",
+    "description": "Your contribution helps women in developing communities start and grow their small businesses.",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    "btn": "Contribute"
+  },
+  {
+    "id": 3,
+    "title": "Plant Trees, Save the Earth",
+    "description": "Join our global initiative to plant one million trees and fight climate change.",
+    "image": "https://images.unsplash.com/photo-1506765515384-028b60a970df",
+    "btn": "Join Campaign"
+  }
+]

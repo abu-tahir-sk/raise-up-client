@@ -13,8 +13,8 @@ createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <ThemeProvider>
         <RouterProvider router={router} />
-      </ThemeProvider>
       <ToastContainer />
+      </ThemeProvider>
     </AuthProvider>
   </StrictMode>
 );

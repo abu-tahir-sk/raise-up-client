@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { ThemeContext } from "../../Provider/ThemeProvider";
+import logo from "../../../public/logo.jpg"
 
 
 const Navbar = () => {
@@ -24,26 +25,21 @@ const Navbar = () => {
 
   const toggleTheme =()=>{
     
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(theme === "dark" ? "light" : "dark");
   
   }
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+  <div className="">
+    <div className="navbar w-[95%] lg:w-[92%] mx-auto">
+  <div className="navbar-start">
+    <div className="dropdown">
+      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
       </div>
-      <div className="flex">
-        <ul className="flex justify-center items-center gap-6 px-3">
-          <li>
-            <button
-              onClick={toggleTheme}
-              className="text-2xl p-2 rounded-full bg-gray-200 dark:bg-gray-700 
-                   text-yellow-500 dark:text-blue-400 transition duration-300"
-            >
-              {theme === "light" ? <FaSun /> : <FaMoon />}
-            </button>
-          </li>
-          <li>
+      <ul
+        tabIndex="-1"
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li>
             <NavLink to="/">Home</NavLink>
           </li>
 
@@ -72,56 +68,90 @@ const Navbar = () => {
               </li>
             </>
           )}
-        </ul>
-        {user ? (
+      </ul>
+    </div>
+   <div className="flex items-center">
+        <div className="w-16 lg:w-[75px] h-16 lg:h-[75px]">
+         <img className="w-full h-full" src={logo} alt="" />
+       </div>
+        <h2 className="text-[24px] lg:text-[28px] font-extrabold text-[#0A7C96]">RISE <span className="font-mono text-[#1f3738]">Up</span></h2>
+     </div>
+  </div>
+  <div className="navbar-center hidden lg:flex">
+    <ul className="flex justify-end items-center gap-6  px-1 bg-none">
+      
+          <li>
+           <button
+              onClick={toggleTheme}
+              className="text-2xl p-2 rounded-full bg-gray-200 dark:bg-gray-700 
+                   text-yellow-500 dark:text-blue-400 transition duration-300"
+            >
+              {theme === "light" ? <FaSun /> : <FaMoon />}
+            </button>
+          </li>
+          <li>
+            <NavLink  className={({ isActive }) =>
+                  `hover:bg-none ${isActive
+                    ? " border-b-3  font-bold"
+                    : ""
+                }`} to="/">Home</NavLink>
+          </li>
+
+          <li>
+            <NavLink className={({ isActive }) =>
+                  `hover:bg-none ${isActive
+                    ? " border-b-3  font-bold"
+                    : ""
+                }`} to="/allCampaign">All Campaign</NavLink>
+          </li>
+          {user && user?.email && (
+            <>
+              {" "}
+              <li>
+                <NavLink className={({ isActive }) =>
+                  `hover:bg-none ${isActive
+                    ? " border-b-3  font-bold"
+                    : ""
+                }`} to="/addNewCampaign">Add New Campaign</NavLink>
+              </li>
+            </>
+          )}
+          {user && (
+            <>
+              <li>
+                <NavLink className={({ isActive }) =>
+                  `hover:bg-none ${isActive
+                    ? " border-b-3  font-bold"
+                    : ""
+                }`} to="/myCampaign">My Campaign</NavLink>
+              </li>
+            </>
+          )}
+          {user && (
+            <>
+              <li>
+                <NavLink className={({ isActive }) =>
+                  `hover:bg-none ${isActive
+                    ? " border-b-3  font-bold"
+                    : ""
+                }`} to="/myDonations">My Donations</NavLink>
+              </li>
+            </>
+          )}
+       
+    </ul>
+  </div>
+  <div className="navbar-end">
+   {user ? (
           <div>
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle"
-              >
-                <div className="indicator">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    {" "}
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    />{" "}
-                  </svg>
-                  <span className="badge badge-sm indicator-item">8</span>
-                </div>
-              </div>
-              <div
-                tabIndex={0}
-                className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
-              >
-                <div className="card-body">
-                  <span className="text-lg font-bold">8 Items</span>
-                  <span className="text-info">Subtotal: $999</span>
-                  <div className="card-actions">
-                    <button className="btn btn-primary btn-block">
-                      View cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="dropdown dropdown-end">
+        
+            <div className="dropdown dropdown-end dropdown-hover">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full">
+                <div tabIndex={0} role="button" className="w-10 rounded-full">
                   {user?.photoURL ? (
                     <img src={user.photoURL} alt={user.displayName || "User"} />
                   ) : (
@@ -129,7 +159,8 @@ const Navbar = () => {
                   )}
                 </div>
               </div>
-              <ul
+              
+                <ul
                 tabIndex="-1"
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
@@ -143,6 +174,7 @@ const Navbar = () => {
                   <button onClick={handleLogOut}>Logout</button>
                 </li>
               </ul>
+            
             </div>
           </div>
         ) : (
@@ -151,17 +183,18 @@ const Navbar = () => {
           "
           >
             <li>
-              <NavLink to="/signIn">Sign In</NavLink>
+              <NavLink  className="btn border-none bg-[#0A7C96] text-white" to="/signIn" data-discover="true">Sign In</NavLink>
             </li>
-
             <li>
-              <NavLink to="/signUp">Sign Up</NavLink>
+              <NavLink  className="btn shadow-none bg-none border-2 border-[#0A7C96] hover:bg-[#0A7C96] hover:text-white" to="/signUp">Sign Up</NavLink>
             </li>
           </ul>
         )}
-      </div>
-    </div>
+  </div>
+</div>
+  </div>
   );
 };
 
 export default Navbar;
+  
