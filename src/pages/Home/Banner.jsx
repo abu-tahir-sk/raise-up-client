@@ -21,7 +21,7 @@ const Banner = () => {
 
   if (!slides.length) return <p className="text-center">Loading...</p>;
   return (
-    <div className="relative  h-[60vh] mx-auto overflow-hidden rounded">
+    <div className="relative h-[40vh] md:h-[60vh] mx-auto overflow-hidden rounded">
       <AnimatePresence className="w-full">
         <motion.img
           key={slides[current].id}

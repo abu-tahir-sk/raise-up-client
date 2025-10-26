@@ -2,6 +2,8 @@ import Banner from "./Banner";
 import { Typewriter } from "react-simple-typewriter";
 import HomeCampaign from "./HomeCampaign";
 import FAQ from "../../components/FAQ";
+import Contact from "../../components/Contact";
+import SubscribeSection from "../../components/SubscribeSection";
 const Home = () => {
   return (
     <div className="w-11/12 mx-auto">
@@ -46,6 +48,13 @@ const Home = () => {
           <div class="absolute -bottom-5 w-0 h-0 border-l-20 border-r-20 border-t-20 border-l-transparent border-r-transparent border-t-[#31cfd4]"></div>
         </div>
         <FAQ/>
+      </div>
+      <div className="pb-8">
+        <div className="divider"><h3 className="text-3xl font-extrabold py-6">Contact Us</h3></div>
+        <Contact/>
+      </div>
+      <div>
+        <SubscribeSection/>
       </div>
     </div>
   );

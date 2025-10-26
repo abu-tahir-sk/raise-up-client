@@ -66,36 +66,32 @@ const SignIn = () => {
       });
   };
   return (
-    <div className="flex flex-col justify-center items-center ">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <form onSubmit={handleLogin} className="card-body">
+    <div className="flex flex-col justify-center items-center py-8">
+      <div className="bg-base-100 w-10/12 md:w-4/12 mx-auto shrink-0 shadow-2xl flex flex-col justify-center items-center px-8">
+        <h3 className="text-3xl font-bold text-center py-6 w-full">Login for  <span className="text-[#1abde1] text-3xl font-extrabold">RISE</span> <span>Up</span></h3>
+        <form onSubmit={handleLogin} className="w-full">
           <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
             <input
               type="email"
               placeholder="email"
               name="email"
-              className="input input-bordered"
+              className="border rounded-lg my-2 focus:outline-none focus:bg-none group py-3 px-3 w-full text-[18px]"
               required
             />
           </div>
           <div className="form-control">
             <div className="form-control relative">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
+              
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="password"
-                className="input input-bordered"
+                className="border rounded-lg my-2 focus:outline-none focus:bg-none group py-3 px-3 w-full text-[18px]"
                 required
               />
               <button
                 onClick={() => setShowPassword(!showPassword)}
-                className=" absolute right-8 top-8"
+                className=" absolute right-6 top-5 text-2xl"
               >
                 {showPassword ? <IoMdEye /> : <FaEyeSlash />}
               </button>
@@ -114,29 +110,32 @@ const SignIn = () => {
               </label>
             </div>
           </div>
-          <div className="form-control mt-6">
+          <div className="form-control mt-4">
             <button
               type="submit"
               disabled={loading}
               //     className={`p-2 rounded text-white font-semibold ${
               //       loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
               //     }`}
-              className="btn btn-primary"
+              className="btn w-full bg-[#1abde1]"
             >
               Login
             </button>
-            <div>Or</div>
+            <div className="divider font-bold">Or</div>
           </div>
         </form>
 
-        <button onClick={handleGoogle} className="btn text-center">
+        <div className="w-full">
+          <button onClick={handleGoogle} className="btn text-center bg-[#F4F3F0] w-full my-3">
           Sign In with Google
         </button>
-        {error && <p className="text-red-500">{error}</p>}
+         {error && <p className="text-red-500">{error}</p>}
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        <p>
-          New to this website please <Link to="/signUp"> Sign Up</Link>
+        <p className="my-4 text-center text-[18px]">
+          New to this website please <Link to="/signUp" className="text-[#1abde1]"> Sign Up</Link>
         </p>
+        </div>
+       
       </div>
     </div>
   );

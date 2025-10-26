@@ -1,42 +1,35 @@
 import { Link } from "react-router-dom";
-
+import { FaRegCalendarCheck } from "react-icons/fa";
 const SingleCampaign = ({  singleCampaign }) => {
   const {
     thumbnail,
     title,
     campaignType,
-    description,
-    count,
     date,
     _id
   } = singleCampaign;
 
-
-  
-
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
-      <figure>
-        <img
-          src={thumbnail}
-          alt={title}
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          {title}
-          <div className="badge badge-secondary">{campaignType}</div>
-        </h2>
-        <p>
-         {description}
-        </p>
-        <div className="card-actions justify-end">
-          <div className="badge badge-outline">{count}</div>
-          <div className="badge badge-outline">{date}</div>
+   <div className="card bg-base-100 shadow-sm">
+          <div className="">
+            <img className="h-full w-full rounded-md" src={thumbnail} alt={title} />
+          </div>
+          <div className="card-body">
+            <h2 className="card-title">
+              {title}
+             
+            </h2>
+            
+            <div className="card-actions justify-between items-center">
+              <div className="badge border-2 border-[#1abde1] rounded-full flex">{campaignType}</div>
+              <div className="badge"><FaRegCalendarCheck className="text-[#31cfd4]" />{date}</div>
+            </div>
+            <Link to={`/details/${_id}`}>
+              {" "}
+              <button className="bg-[#31cfd4] font-bold px-3 py-1 text-gray-700 rounded-md mt-4"> See More </button>
+            </Link>
+          </div>
         </div>
-       <Link to={`/details/${_id}`}> <button> See More </button></Link>
-      </div>
-    </div>
   );
 };
 

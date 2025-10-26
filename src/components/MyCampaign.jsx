@@ -60,7 +60,7 @@ const MyCampaign = () => {
 
   return (
     <div className="w-10/12 mx-auto">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto bg-[#F4F3F0] p-3 my-8">
         <table className="table w-full">
           {/* Table Head */}
           <thead>
