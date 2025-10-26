@@ -40,10 +40,10 @@ const Banner = () => {
         <h2 className="text-2xl md:text-3xl font-extrabold mb-2">
           {slides[current].title}
         </h2>
-        <p className="text-sm md:text-base mb-4 max-w-md font-serif">
+        <p className="text-sm md:text-base mb-4 max-w-md">
           {slides[current].description}
         </p>
-        <button className="bg-[#0A7C96] text-white px-5 py-2 rounded  font-semibold hover:bg-gray-200 hover:text-black transition">
+        <button className="bg-[#31cfd4] text-white px-5 py-2 rounded  font-semibold hover:bg-gray-200 hover:text-black transition">
           {slides[current].btn}
         </button>
       </div>

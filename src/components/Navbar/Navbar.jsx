@@ -74,7 +74,7 @@ const Navbar = () => {
         <div className="w-16 lg:w-[75px] h-16 lg:h-[75px]">
          <img className="w-full h-full" src={logo} alt="" />
        </div>
-        <h2 className="text-[24px] lg:text-[28px] font-extrabold text-[#0A7C96]">RISE <span className="font-mono text-[#1f3738]">Up</span></h2>
+        <h2 className="text-[24px] lg:text-[28px] font-extrabold text-[#31cfd4]">RISE <span className="font-mono text-[#1f3738]">Up</span></h2>
      </div>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -92,7 +92,7 @@ const Navbar = () => {
           <li>
             <NavLink  className={({ isActive }) =>
                   `hover:bg-none ${isActive
-                    ? " border-b-3  font-bold"
+                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
                     : ""
                 }`} to="/">Home</NavLink>
           </li>
@@ -100,7 +100,7 @@ const Navbar = () => {
           <li>
             <NavLink className={({ isActive }) =>
                   `hover:bg-none ${isActive
-                    ? " border-b-3  font-bold"
+                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
                     : ""
                 }`} to="/allCampaign">All Campaign</NavLink>
           </li>
@@ -110,7 +110,7 @@ const Navbar = () => {
               <li>
                 <NavLink className={({ isActive }) =>
                   `hover:bg-none ${isActive
-                    ? " border-b-3  font-bold"
+                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
                     : ""
                 }`} to="/addNewCampaign">Add New Campaign</NavLink>
               </li>
@@ -121,7 +121,7 @@ const Navbar = () => {
               <li>
                 <NavLink className={({ isActive }) =>
                   `hover:bg-none ${isActive
-                    ? " border-b-3  font-bold"
+                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
                     : ""
                 }`} to="/myCampaign">My Campaign</NavLink>
               </li>
@@ -132,7 +132,7 @@ const Navbar = () => {
               <li>
                 <NavLink className={({ isActive }) =>
                   `hover:bg-none ${isActive
-                    ? " border-b-3  font-bold"
+                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
                     : ""
                 }`} to="/myDonations">My Donations</NavLink>
               </li>
@@ -183,10 +183,10 @@ const Navbar = () => {
           "
           >
             <li>
-              <NavLink  className="btn border-none bg-[#0A7C96] text-white" to="/signIn" data-discover="true">Sign In</NavLink>
+              <NavLink  className="btn border-none bg-[#31cfd4] text-white" to="/signIn" data-discover="true">Sign In</NavLink>
             </li>
             <li>
-              <NavLink  className="btn shadow-none bg-none border-2 border-[#0A7C96] hover:bg-[#0A7C96] hover:text-white" to="/signUp">Sign Up</NavLink>
+              <NavLink  className="btn shadow-none bg-none border-2 border-[#31cfd4] hover:bg-[#31cfd4] hover:text-white" to="/signUp">Sign Up</NavLink>
             </li>
           </ul>
         )}
