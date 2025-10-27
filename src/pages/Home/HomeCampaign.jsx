@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { FaRegCalendarCheck } from "react-icons/fa";
+import Loading from "../../components/Loading";
+import { FourSquare } from "react-loading-indicators";
 
 const HomeCampaign = () => {
-  const { user } = useContext(AuthContext);
+  const { loading, setLoading, user } = useContext(AuthContext);
   const [campaigns, setCampaigns] = useState([]);
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const HomeCampaign = () => {
         .then((res) => res.json())
         .then((data) => {
           setCampaigns(data);
+          setLoading(false)
         })
         .catch((err) => {
           console.error("Error fetching campaigns:", err);
@@ -27,6 +30,9 @@ const HomeCampaign = () => {
         });
     }
   }, [user]);
+
+    if (loading) return <Loading />;
+  if (campaigns.length === 0) return <p className="text-center"><FourSquare color="#32cd32" size="medium" text="" textColor="" /></p>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10  gap-6">

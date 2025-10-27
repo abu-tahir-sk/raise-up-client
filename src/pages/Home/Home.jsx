@@ -5,6 +5,7 @@ import FAQ from "../../components/FAQ";
 import Contact from "../../components/Contact";
 import SubscribeSection from "../../components/SubscribeSection";
 const Home = () => {
+  
   return (
     <div className="w-11/12 mx-auto">
       <div>

@@ -13,13 +13,18 @@ import MyCampaign from "../components/MyCampaign";
 import Edit from "../components/Edit";
 import MyDonations from "./MyDonations";
 import ErrorPage from "../components/ErrorPage";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
+      {
+        path: "*",
+        element: <Loading />,
+      },
       {
         path: "/",
         element: <Home />,

@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const MyDonations = () => {
   const [campaigns, setCampaigns] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext);
+
+  const { user, loading, setLoading } = useContext(AuthContext);
 
   useEffect(() => {
     if (!user.email) return;
@@ -29,8 +30,8 @@ const MyDonations = () => {
       });
   }, [user]);
 
-  if (loading) return <p>Loading donations...</p>;
-  if (campaigns.length === 0) return <p>No donations found.</p>;
+  if (loading) return <Loading />;
+  if (campaigns.length === 0) return <Loading />;
   return (
     <div className="w-11/12 mx-auto py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -56,7 +57,7 @@ const MyDonations = () => {
                       {campaign.date}
                     </div>
                   </div>
-                  <Link to={`/details/${campaign._id}`}>
+                  <Link to={`*`}>
                     {" "}
                     <button className="bg-[#31cfd4] font-bold px-3 text-gray-700 py-1 rounded-md mt-4">
                       {" "}

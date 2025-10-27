@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Loading from "./Loading";
 
 const MyCampaign = () => {
-  const { user } = useContext(AuthContext);
+  const { user,loading, setLoading } = useContext(AuthContext);
   const [campaign, setCampaign] = useState([]);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const MyCampaign = () => {
         })
           .then((res) => res.json())
           .then((data) => {
+            setLoading(false)
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -60,6 +62,9 @@ const MyCampaign = () => {
       }
     });
   };
+
+    if (loading) return <Loading />;
+    if (campaign.length === 0) return <Loading />;
 
   return (
     <div className="w-10/12 mx-auto">
