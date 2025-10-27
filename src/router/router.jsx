@@ -12,12 +12,13 @@ import Details from "../components/Details";
 import MyCampaign from "../components/MyCampaign";
 import Edit from "../components/Edit";
 import MyDonations from "./MyDonations";
+import ErrorPage from "../components/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
@@ -26,7 +27,6 @@ const router = createBrowserRouter([
       {
         path: "/allCampaign",
         element: <AllCampaign />,
- 
       },
       {
         path: "/addNewCampaign",
@@ -72,13 +72,13 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <Details />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/campaign/${params.id}`),
+          fetch(`https://raise-up-server.vercel.app/campaign/${params.id}`),
       },
       {
         path: "/edit/:id",
         element: <Edit />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/campaign/${params.id}`),
+          fetch(`https://raise-up-server.vercel.app/campaign/${params.id}`),
       },
     ],
   },

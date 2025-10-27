@@ -20,13 +20,12 @@ import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
+const data = useLoaderData();
+const { thumbnail, title, campaignType, description, count, date, \_id } = data;
 
-  const data = useLoaderData();
-  const { thumbnail, title, campaignType, description, count, date, _id } = data;
-
-  const handleClick = () => {
-    const now = new Date();
-    const deadline = new Date(date);
+const handleClick = () => {
+const now = new Date();
+const deadline = new Date(date);
 
     // ✅ Check if deadline is over
     if (deadline.getTime() < now.getTime()) {
@@ -35,7 +34,7 @@ import Swal from "sweetalert2";
     }
 
     // Donate API call
-    fetch(`http://localhost:5000/donate/${_id}`, {
+    fetch(`https://raise-up-server.vercel.app/donate/${_id}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -52,19 +51,17 @@ import Swal from "sweetalert2";
         }
       })
       .catch(() => toast.error("Something went wrong!"));
-  };
+
+};
 
 ## Notes for Deadline Check
 
 1. Always parse the campaign date as a Date object:
 
-  const deadline = new Date(date);
+const deadline = new Date(date);
 
 2. Compare with current time:
 
 if (deadline.getTime() < new Date().getTime()) {
-  // Deadline over
+// Deadline over
 }
-
-
-

@@ -7,20 +7,19 @@ const Details = () => {
   const data = useLoaderData();
   const { thumbnail, title, campaignType, description, count, date, _id } =
     data;
-  console.log(data);
 
   const handleClick = () => {
     const now = new Date();
     const deadline = new Date(date);
     if (deadline.getTime() < now.getTime()) {
-       Swal.fire({
-            title: `Sorry! This campaign's deadline is over.`,
-            icon: "error",
-            draggable: true,
-          });
+      Swal.fire({
+        title: `Sorry! This campaign's deadline is over.`,
+        icon: "error",
+        draggable: true,
+      });
       return;
     }
-    fetch(`http://localhost:5000/donate/${_id}`, {
+    fetch(`https://raise-up-server.vercel.app/donate/${_id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -31,7 +30,7 @@ const Details = () => {
         const result = await res.json();
 
         if (!res.ok) {
-            Swal.fire({
+          Swal.fire({
             title: `Donation failed!${result.message}`,
             icon: "error",
             draggable: true,

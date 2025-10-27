@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+
 import SingleCampaign from "../components/SingleCampaign";
 
 const AllCampaign = () => {
-  const data = useLoaderData();
+  
   const [campaign, setCampaign] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
 
   const campaigns = async () => {
-    const res = await fetch(`http://localhost:5000/campaign?sort=${sortOrder}`);
+    const res = await fetch(`https://raise-up-server.vercel.app/campaign?sort=${sortOrder}`);
     const data = await res.json();
     setCampaign(data);
     if (Array.isArray(data)) {

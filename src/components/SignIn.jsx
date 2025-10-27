@@ -39,28 +39,28 @@ const SignIn = () => {
         navigation("/");
         form.reset("");
         setSuccess(true);
-        console.log(res);
+        
       })
       .catch((err) => {
         setErrorMessage(err.message);
         setLoading(false);
-        console.log(err);
+       
       });
   };
   const handleGoogle = () => {
     handleGoogleLogin()
       .then((result) => {
-        console.log(result);
+        
         const user = result.user;
         setUser(user)
-        console.log(result.user.photoURL)
+        
         toast.success("Login successfully");
         navigation("/");
 
         setSuccess(true);
       })
       .catch((err) => {
-        console.log(err.message);
+        
         setErrorMessage(err.message);
         setLoading(false);
       });

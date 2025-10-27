@@ -4,7 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
 const AddCampaign = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [error, setError] = useState("");
   const handleAddCampaign = (event) => {
@@ -28,11 +28,8 @@ const AddCampaign = () => {
       userEmail,
       userName,
     };
-    console.log(info);
-    if (
-      !thumbnail ||
-      !title || !description
-    ) {
+
+    if (!thumbnail || !title || !description) {
       setError(toast.error("fill up all field"));
       return;
     }
@@ -43,7 +40,7 @@ const AddCampaign = () => {
     // }
     setError("");
 
-    fetch("http://localhost:5000/campaign", {
+    fetch("https://raise-up-server.vercel.app/campaign", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -52,41 +49,47 @@ const AddCampaign = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Campaign successfully",
             icon: "success",
             draggable: true,
           });
-          form.reset()
+          form.reset();
         }
       });
   };
   return (
     <div>
-      {
-        error && <p>{error}</p>
-      }
+      {error && <p>{error}</p>}
       <div className="flex flex-col justify-center w-11/12 mx-auto items-center py-8">
-       
         <h3 className="text-4xl font-extrabold text-center">
-            <Typewriter
-                words={["Share Your Vision with the World"]}
-                loop={5}
-                cursor
-                cursorStyle="_"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={1000}
-                
-              /> </h3>
-        <p className="font-medium  text-[17px] py-3 text-center">Explore all the campaigns hosted on our platform, from personal causes to creative ideas. Find a project that inspires you and make a difference.</p>
+          <Typewriter
+            words={["Share Your Vision with the World"]}
+            loop={5}
+            cursor
+            cursorStyle="_"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />{" "}
+        </h3>
+        <p className="font-medium  text-[17px] py-3 text-center">
+          Explore all the campaigns hosted on our platform, from personal causes
+          to creative ideas. Find a project that inspires you and make a
+          difference.
+        </p>
       </div>
       <div className="w-11/12 md:w-7/12  mx-auto my-8 rounded-md">
-
-      <img src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-vector-illustration-business-startup-process-team-work-flat-cartoon-style-png-image_5047439.jpg" className="h-[70vh] w-full" alt="" />
-        <form onSubmit={handleAddCampaign} className="fieldset bg-[#F4F3F0] p-6">
+        <img
+          src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-vector-illustration-business-startup-process-team-work-flat-cartoon-style-png-image_5047439.jpg"
+          className="h-[70vh] w-full"
+          alt=""
+        />
+        <form
+          onSubmit={handleAddCampaign}
+          className="fieldset bg-[#F4F3F0] p-6"
+        >
           <div className="flex justify-center items-center gap-6">
             <div className="flex flex-col w-full">
               <label className="label py-2">Thumbnail</label>
@@ -173,7 +176,9 @@ const AddCampaign = () => {
             </div>
           </div>
 
-          <button className="btn bg-[#2aadb1] text-white mt-4">Add New Campaign</button>
+          <button className="btn bg-[#2aadb1] text-white mt-4">
+            Add New Campaign
+          </button>
         </form>
       </div>
     </div>

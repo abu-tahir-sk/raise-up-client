@@ -14,13 +14,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const handleLogOut = () => {
     signOutUser()
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+       
         navigate("/signIn");
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch();
   };
 
   const toggleTheme =()=>{

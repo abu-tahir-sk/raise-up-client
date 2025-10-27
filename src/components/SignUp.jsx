@@ -46,11 +46,11 @@ const SignUp = () => {
         form.reset();
         navigation("/");
         emailVerification()
-          .then((res) => console.log(res))
-          .catch((err) => console.log(err));
+          .then()
+          .catch();
       })
       .catch((err) => {
-        console.log(err);
+        
         setError(err.message);
       });
   };

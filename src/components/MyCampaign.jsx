@@ -11,18 +11,21 @@ const MyCampaign = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/myCampaign?email=${user.email}`, {
-        headers: {
-          "content-type": `application/json`,
-        },
-      })
+      fetch(
+        `https://raise-up-server.vercel.app/myCampaign?email=${user.email}`,
+        {
+          headers: {
+            "content-type": `application/json`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
-            setCampaign(data); 
+          setCampaign(data);
         })
         .catch((err) => {
           console.error("Error fetching campaigns:", err);
-          setCampaign([]); 
+          setCampaign([]);
         });
     }
   }, [user]);
@@ -38,7 +41,7 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/campaign/${id}`, {
+        fetch(`https://raise-up-server.vercel.app/campaign/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -74,7 +77,7 @@ const MyCampaign = () => {
 
           {/* Table Body */}
           <tbody>
-            {(campaign) && campaign.length > 0 ? (
+            {campaign && campaign.length > 0 ? (
               campaign.map((singleCampaign) => (
                 <tr key={singleCampaign._id}>
                   <td>
@@ -92,7 +95,9 @@ const MyCampaign = () => {
                     </div>
                   </td>
                   <td>{singleCampaign.campaignType}</td>
-                  <td className="hidden md:table-cell">{singleCampaign.date}</td>
+                  <td className="hidden md:table-cell">
+                    {singleCampaign.date}
+                  </td>
                   <td>
                     <div className="join join-vertical space-y-2 md:space-y-6">
                       <button className="join-item text-xl bg-[#F4F3F0] rounded-full p-2 text-black">
