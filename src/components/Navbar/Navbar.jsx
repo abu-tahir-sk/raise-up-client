@@ -81,10 +81,10 @@ const Navbar = () => {
       </ul>
     </div>
    <div className="flex items-center">
-        <div className="w-16 lg:w-[75px] h-16 lg:h-[75px]">
+        <div className="w-14 lg:w-[75px] h-14 lg:h-[75px]">
          <img className="w-full h-full" src={logo} alt="" />
        </div>
-        <h2 className="text-[24px] lg:text-[28px] font-extrabold text-[#31cfd4]">RISE <span className="font-mono text-[#1f3738]">Up</span></h2>
+        <h2 className="text-[22px] lg:text-[28px] font-extrabold text-[#31cfd4]">RISE <span className="font-mono text-[#1f3738]">Up</span></h2>
      </div>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -194,10 +194,10 @@ const Navbar = () => {
           "
           >
             <li>
-              <NavLink  className="btn border-none bg-[#31cfd4] text-white" to="/signIn" data-discover="true">Sign In</NavLink>
+              <NavLink  className="btn btn-sm md:btn-md border-none bg-[#31cfd4] text-white" to="/signIn" data-discover="true">Sign In</NavLink>
             </li>
-            <li>
-              <NavLink  className="btn shadow-none bg-none border-2 border-[#31cfd4] hover:bg-[#31cfd4] hover:text-white" to="/signUp">Sign Up</NavLink>
+            <li className="hidden md:flex">
+              <NavLink  className="btn btn-sm md:btn-md shadow-none bg-none border-2 border-[#31cfd4] hover:bg-[#31cfd4] hover:text-white" to="/signUp">Sign Up</NavLink>
             </li>
           </ul>
         )}
