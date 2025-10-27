@@ -5,13 +5,13 @@
 - This page displays campaign details and handles donations.
   If the campaign deadline has passed, the Donate button is disabled or shows a toast error.
 
-\*\*\* ✅ Key Features
+- ✅ Key Features
 
-\*\*\* Display campaign info (title, type, date, thumbnail, description, amount)
+- Display campaign info (title, type, date, thumbnail, description, amount)
 
-\*\*\* Check deadline before donation
+- Check deadline before donation
 
-\*\*\* Show toast or SweetAlert modal for success or error
+- Show toast or SweetAlert modal for success or error
 
 ### React Implementation (Details.jsx)
 
