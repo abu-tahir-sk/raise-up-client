@@ -2,6 +2,7 @@ import { useContext} from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Typewriter } from "react-simple-typewriter";
 
 const Edit = () => {
 
@@ -58,9 +59,24 @@ const Edit = () => {
   return (
     <div>
 
-      <h3 className="text-center font-bold text-3xl py-4">Update Campaign {title}</h3>
-      <div className="w-8/12 mx-auto">
-        <form onSubmit={handleUpdateCampaign} className="fieldset">
+     <div className="flex flex-col justify-center w-11/12 mx-auto items-center py-8">
+       
+        <h3 className="text-4xl font-extrabold text-center">
+            <Typewriter
+                words={[`Update Campaign ${title}`]}
+                loop={5}
+                cursor
+                cursorStyle="_"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+                
+              /> </h3>
+        <p className="font-medium  text-[17px] py-3 text-center">Explore  Find a project that inspires you and make a difference.</p>
+      </div>
+      <div className="w-11/12 md:w-7/12  mx-auto my-8 rounded-md">
+       <img src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-vector-illustration-business-startup-process-team-work-flat-cartoon-style-png-image_5047439.jpg" className="h-[70vh] w-full" alt="" />
+        <form onSubmit={handleUpdateCampaign} className="fieldset bg-[#F4F3F0] p-6">
           <div className="flex justify-center items-center gap-6">
             <div className="flex flex-col w-full">
               <label className="label py-2">Thumbnail</label>
@@ -150,7 +166,7 @@ const Edit = () => {
             </div>
           </div>
 
-          <button className="btn btn-neutral mt-4">Update Campaign</button>
+          <button className="btn bg-[#2aadb1] text-white mt-4">Update Campaign</button>
         </form>
       </div>
     </div>
