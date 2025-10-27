@@ -54,4 +54,17 @@ import Swal from "sweetalert2";
       .catch(() => toast.error("Something went wrong!"));
   };
 
+## Notes for Deadline Check
+
+1. Always parse the campaign date as a Date object:
+
+  const deadline = new Date(date);
+
+2. Compare with current time:
+
+if (deadline.getTime() < new Date().getTime()) {
+  // Deadline over
+}
+
+
 
