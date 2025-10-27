@@ -1,5 +1,6 @@
 import { CiBadgeDollar, CiCalendarDate } from "react-icons/ci";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 const Details = () => {
@@ -9,6 +10,16 @@ const Details = () => {
   console.log(data);
 
   const handleClick = () => {
+    const now = new Date();
+    const deadline = new Date(date);
+    if (deadline.getTime() < now.getTime()) {
+       Swal.fire({
+            title: `Sorry! This campaign's deadline is over.`,
+            icon: "error",
+            draggable: true,
+          });
+      return;
+    }
     fetch(`http://localhost:5000/donate/${_id}`, {
       method: "POST",
       headers: {
@@ -16,14 +27,26 @@ const Details = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        Swal.fire({
-          title: "Donation successful!",
-          icon: "success",
-          draggable: true,
-        });
+      .then(async (res) => {
+        const result = await res.json();
+
+        if (!res.ok) {
+            Swal.fire({
+            title: `Donation failed!${result.message}`,
+            icon: "error",
+            draggable: true,
+          });
+        } else {
+          Swal.fire({
+            title: "Donation successful!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Something went wrong!");
       });
   };
 
@@ -45,8 +68,10 @@ const Details = () => {
             </div>
           </div>
           <p className="text-[17px] py-2">{description}</p>
-          <div className="pb-3 flex items-center gap-2 text-[15px]"><CiBadgeDollar className="text-2xl" /> {count}</div>
-          <button onClick={handleClick}className="btn bg-[#31cfd4] text-white">
+          <div className="pb-3 flex items-center gap-2 text-[15px]">
+            <CiBadgeDollar className="text-2xl" /> {count}
+          </div>
+          <button onClick={handleClick} className="btn bg-[#31cfd4] text-white">
             Donate
           </button>
         </div>

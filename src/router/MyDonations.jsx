@@ -31,7 +31,7 @@ const MyDonations = () => {
   return (
     <div className="w-11/12 mx-auto py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {campaigns ? ( campaigns.map(campaign=> <div className="card bg-base-100 shadow-sm">
+        {campaigns ? ( campaigns.map((campaign,indx)=> <div className="card bg-base-100 shadow-sm" key={indx}>
                  <div className="">
                    <img className="h-full w-full rounded-md" src={campaign.thumbnail} alt={campaign.title} />
                  </div>

@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/allCampaign",
         element: <AllCampaign />,
-        loader: () => fetch("http://localhost:5000/campaign"),
+ 
       },
       {
         path: "/addNewCampaign",
