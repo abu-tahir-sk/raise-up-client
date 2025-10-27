@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -9,7 +9,8 @@ import logo from "../../../public/logo.jpg"
 const Navbar = () => {
 
   const { signOutUser, user } = useContext(AuthContext);
-  const { theme, setTheme } = useContext(ThemeContext);
+  
+  const [theme, setTheme] = useState("light");
 
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -21,9 +22,22 @@ const Navbar = () => {
       .catch();
   };
 
-  const toggleTheme =()=>{
-    setTheme(theme === "dark" ? "light" : "dark");
-  }
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+      document.documentElement.classList.toggle("dark", storedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
   return (
   <div className="shadow-sm">
     <div className="navbar w-[95%] lg:w-[92%] mx-auto">

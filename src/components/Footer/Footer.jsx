@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className="bg-[#F4F3F0]">
       
-   <footer className="footer footer-horizontal footer-center w-11/12 md:w-10/12 mx-auto  p-10">
+   <footer className="footer footer-horizontal footer-center  p-10">
   <aside>
    <div className="flex justify-center items-center gap-4">
      <img src="https://i.ibb.co/fdhfy8jB/dfg-removebg-preview.png" className="w-20 h-20 mx-auto" alt="" />
@@ -18,7 +18,7 @@ const Footer = () => {
     <li>
             <NavLink  className={({ isActive }) =>
                   `hover:bg-none hover:border-b-2  ${isActive
-                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
+                    ? " border-b-3 border-[#31cfd4]  font-bold"
                     : ""
                 }`} to="/">Home</NavLink>
           </li>
@@ -26,7 +26,7 @@ const Footer = () => {
           <li>
             <NavLink className={({ isActive }) =>
                   `hover:bg-none hover:border-b-2 ${isActive
-                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
+                    ? " border-b-3 border-[#31cfd4]  font-bold"
                     : ""
                 }`} to="/allCampaign">All Campaign</NavLink>
           </li>
@@ -36,7 +36,7 @@ const Footer = () => {
               <li>
                 <NavLink className={({ isActive }) =>
                   `hover:bg-none hover:border-b-2 ${isActive
-                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
+                    ? " border-b-3 border-[#31cfd4]  font-bold"
                     : ""
                 }`} to="/addNewCampaign">Add New Campaign</NavLink>
               </li>
@@ -47,7 +47,7 @@ const Footer = () => {
               <li>
                 <NavLink className={({ isActive }) =>
                   `hover:bg-none hover:border-b-2 ${isActive
-                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
+                    ? " border-b-3 border-[#31cfd4]  font-bold"
                     : ""
                 }`} to="/myCampaign">My Campaign</NavLink>
               </li>
@@ -58,7 +58,7 @@ const Footer = () => {
               <li>
                 <NavLink className={({ isActive }) =>
                   `hover:bg-none hover:border-b-2 ${isActive
-                    ? " border-b-3 border-[#31cfd4] text-[] font-bold"
+                    ? " border-b-3 border-[#31cfd4]  font-bold"
                     : ""
                 }`} to="/myDonations">My Donations</NavLink>
               </li>
