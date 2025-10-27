@@ -22,9 +22,7 @@ const Navbar = () => {
   };
 
   const toggleTheme =()=>{
-    
     setTheme(theme === "dark" ? "light" : "dark");
-  
   }
   return (
   <div className="shadow-sm">
@@ -78,15 +76,7 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="flex justify-end items-center gap-6  px-1 bg-none">
       
-          <li>
-           <button
-              onClick={toggleTheme}
-              className="text-2xl p-2 rounded-full bg-gray-200 dark:bg-gray-700 
-                   text-yellow-500 dark:text-blue-400 transition duration-300"
-            >
-              {theme === "light" ? <FaSun /> : <FaMoon />}
-            </button>
-          </li>
+        
           <li>
             <NavLink  className={({ isActive }) =>
                   `hover:bg-none ${isActive
@@ -140,6 +130,15 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
+    <div className="pr-3">
+           <button
+              onClick={toggleTheme}
+              className="text-2xl p-2 rounded-full bg-gray-200 dark:bg-gray-700 
+                   text-yellow-500 dark:text-blue-400 transition duration-300"
+            >
+              {theme === "light" ? <FaSun /> : <FaMoon />}
+            </button>
+          </div>
    {user ? (
           <div>
         

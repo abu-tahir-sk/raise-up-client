@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import Loading from "../../components/Loading";
 import { FourSquare } from "react-loading-indicators";
+import { motion } from "motion/react"
 
 const HomeCampaign = () => {
   const { loading, setLoading, user } = useContext(AuthContext);
@@ -22,23 +23,34 @@ const HomeCampaign = () => {
         .then((res) => res.json())
         .then((data) => {
           setCampaigns(data);
-          setLoading(false)
+          setLoading(false);
         })
         .catch((err) => {
           console.error("Error fetching campaigns:", err);
           setCampaigns([]);
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-    if (loading) return <Loading />;
-  if (campaigns.length === 0) return <p className="text-center"><FourSquare color="#32cd32" size="medium" text="" textColor="" /></p>;
+  if (loading) return <Loading />;
+  if (campaigns.length === 0)
+    return (
+      <p className="text-center">
+        <FourSquare color="#32cd32" size="medium" text="" textColor="" />
+      </p>
+    );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10  gap-6">
       {campaigns
         ? campaigns.map((campaign) => (
-            <div className="card bg-base-100 shadow-sm">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onHoverStart={() => console.log("hover started!")}
+              className="card bg-base-100 shadow-sm"
+            >
               <div className="">
                 <img
                   className="h-full w-full rounded-md"
@@ -66,7 +78,7 @@ const HomeCampaign = () => {
                   </button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))
         : ""}
     </div>
