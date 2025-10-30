@@ -1,6 +1,6 @@
 # RAISE UP
 
-- https://eclectic-crumble-5ce2eb.netlify.app/
+https://rise-up-html.netlify.app/
 
 ### Feature 
 
